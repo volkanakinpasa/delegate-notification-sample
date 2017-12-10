@@ -1,9 +1,11 @@
-﻿namespace Notification.Notifications.Implementations
+﻿using Notification.Models;
+
+namespace Notification.Notifications.Implementations
 {
 
     public class SmsNotification : INotification
     {
-        public void Send()
+        public void Send(NotificationMessage message)
         {
             //Send an sms
         }

@@ -1,8 +1,10 @@
-﻿namespace Notification.Notifications.Implementations
+﻿using Notification.Models;
+
+namespace Notification.Notifications.Implementations
 {
     public class PushNotification : INotification
     {
-        public void Send()
+        public void Send(NotificationMessage message)
         {
             //Push Notification
         }

@@ -1,31 +1,30 @@
-﻿using System;
-using Notification.Models;
-using Notification.Notifications;
+﻿using Notification.Models;
+using Notification.Notifications.Implementations;
 
 namespace Notification
 {
     public class OrderHandler
     {
-        private Action _action;
-
         public Order _order { get; }
+
+        private NotificationHandler _donno;
 
         public OrderHandler(Order order)
         {
             _order = order;
-        }
 
-        public void Subscribe(INotification notifier)
-        {
-            _action += notifier.Send;
+            _donno = new NotificationHandler();
+
+            _donno.Subscribe(new EmailNotification());
+            _donno.Subscribe(new SmsNotification());
+            _donno.Subscribe(new PushNotification());
         }
 
         public void Complete()
         {
-            // Charge for the money.
+            _order.Pay();
 
-            //Call Notifications
-            _action();
+            _donno.Run(new NotificationMessage() { Message = "Done" });
         }
     }
 }

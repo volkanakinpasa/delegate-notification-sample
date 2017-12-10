@@ -17,10 +17,6 @@ namespace Notification.Test
 
             OrderHandler orderHandler = new OrderHandler(order);
 
-            //Only Email & Push. Not by SMS
-            orderHandler.Subscribe(new EmailNotification());
-            orderHandler.Subscribe(new PushNotification());
-
             orderHandler.Complete();
         }
     }
